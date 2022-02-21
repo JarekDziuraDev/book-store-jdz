@@ -1,5 +1,3 @@
-server:
-  port: 8090
 
 spring:
 #  config:
@@ -8,14 +6,15 @@ spring:
 #  h2.console:
 #    path: '/console'
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password:
-    platform: h2
+    url: ${databaseUrl}
+    username: ${username}
+    password: ${password}
+    platform: postgres
+    driverClassName: 'org.postgresql.Driver'
     hikari:
       connection-test-query: SELECT 1
   jpa:
-    database: H2
+    database: POSTGRESQL
     show-sql: true
     generate-ddl: true
     hibernate:
@@ -25,6 +24,6 @@ spring:
     baseline-on-migrate: true
     validate-on-migrate: true
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher

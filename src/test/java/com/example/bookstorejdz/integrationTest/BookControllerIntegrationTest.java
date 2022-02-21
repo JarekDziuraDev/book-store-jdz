@@ -15,7 +15,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest(classes = BookStoreJdzApplication.class,
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class BookControllerTest {
+public class BookControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -32,12 +32,12 @@ public class BookControllerTest {
 
     }
 
-//    @Test
-//    @Sql(scripts = {"classpath:InsertInitialBookRecordForTest.sql"})
-//    void shouldReturnBooksWhenBookApiCalled1() {
-//        BookDto[] listOfBooks = testRestTemplate.getForObject("http://localhost:"+port+"/api/v1/books", BookDto[].class);
-//        assertThat(listOfBooks).isNotNull();
-//        assertThat(listOfBooks.length).isEqualTo(2);
-//
-//    }
+    @Test
+    @Sql(scripts = {"classpath:InsertInitialBookRecordForTest.sql"})
+    void shouldReturnBooksWhenBookApiCalled1() {
+        BookDto[] listOfBooks = testRestTemplate.getForObject("http://localhost:"+port+"/api/v1/books", BookDto[].class);
+        assertThat(listOfBooks).isNotNull();
+        assertThat(listOfBooks.length).isEqualTo(2);
+
+    }
 }
