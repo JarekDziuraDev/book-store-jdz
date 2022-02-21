@@ -9,7 +9,7 @@ spring:
     url: ${databaseUrl}
     username: ${username}
     password: ${password}
-    platform: postgres
+    platform: postgre
     driverClassName: 'org.postgresql.Driver'
     hikari:
       connection-test-query: SELECT 1
